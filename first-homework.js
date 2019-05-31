@@ -30,7 +30,7 @@ id5 = id5.toString();
 console.log(typeof id1, typeof id2, typeof id3, typeof id4, typeof id5);
 console.log(id1, id2, id3, id4, id5);
 // 자유롭게 문자열 하나를 변수에 대입해보세요.
-const intro = "안녕하세요, 저는 김도화입니다.";
+const intro = "안녕하세요, 저는 김도화입니다."; // [memo] const 쓴 이유는?
 console.log(intro);
 // 그 문자열의 길이는?
 console.log(intro.length);
@@ -68,10 +68,28 @@ const newIdol = idol.splice(1, 1, "여자친구");
 console.log(idol);
 // 다른 방법으로 해보세요.
 delete idol[1];
-idol[1] = "BTS";
+idol[1] = "BTS"; // [memo] 이럴 때는 delete하지 말고, 바로 indexing 하고 해도 돼요.
+//delete 연산자는 배열에서는 가급적 쓰지 말고, 객체에서만 쓰기를 권해요.
+//그 자리가 비워지기 때문에!
+//왜냐하면 배열에서 중간에 한 항목이 빠져버리면 그걸 위해 for문을 쓸 때 잘 되지 않을 수 있어요.
+//아래 처럼 실행시키면 에러가 발생!!
+// > let idol = ["엑소", "소녀시대", "샤이니", "워너원", "세븐틴"];
+// undefined
+// > delete idol[1]
+// true
+// > idol
+// [ '엑소', <1 empty item>, '샤이니', '워너원', '세븐틴' ]
+// > idol.length
+// 5
+// > for(let i = 0; i < idol.length; i++) console.log(idol[i].split());
+// [ '엑소' ]
+// TypeError: Cannot read property 'split' of undefined
+// >
 console.log(idol);
 // 그 배열의 3번째 항목을 없애보세요.
-delete idol[2];
+delete idol[2]; // [memo] 마찬가지 이유로 사용하지 말고.
+//이럴 때에는 splice를 쓰면 돼요.
+//splice 문서 살펴보기 >> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
 console.log(idol);
 // 그 배열의 2번째와 3번째 항목 사이에 다른 항목 3개를 넣어보세요.
 idol.splice(2, 0, "아이오아이", "오마이걸", "아이즈원");
@@ -120,6 +138,8 @@ matrixSecond[1] = [5, 6, 7, 8];
 matrixSecond[2] = [9, 10, 11, 12];
 matrixSecond[3] = [13, 14, 15, 16];
 matrixSecond[4] = [17, 18, 19, 20];
+// [memo] 열을 먼저 쓰라는 건 1, 5, 9, 13, 17이 먼저 오게
+// [memo] 행을 먼저 쓰는지, 열을 먼저 쓰는지는 나중에 매트릭스를 활용한 라이브러리 같은 걸 쓸 때 중요할 수 있음
 console.log(matrixSecond);
 // 위의 모양을 가진 행렬을 배열로 표현해보세요. (열을 먼저 써보세요.)
 console.log("*잘 모르겠습니다.");
@@ -127,7 +147,7 @@ console.log("*잘 모르겠습니다.");
 const dowhaKim = { name: "Dowha Kim", age: 29, location: "Bangkok" };
 console.log(dowhaKim);
 // 그 객체의 name 이라는 key의 value를 출력해보세요.
-const name = dowhaKim.name;
+const name = dowhaKim.name; //[memo]왜 변수를 선언했는지?
 console.log(name);
 // 그 객체의 name 이라는 key의 value를 다른 것으로 바꿔보세요.
 dowhaKim.name = "Fado";
@@ -135,6 +155,7 @@ console.log(dowhaKim);
 // 그 객체에는 어떤 key들이 있나요?
 console.log(Object.keys(dowhaKim));
 // 그 객체에는 어떤 value들이 있나요?
+// [memo] https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#Methods_of_the_Object_constructor
 console.log(
   dowhaKim[Object.keys(dowhaKim)[0]],
   dowhaKim[Object.keys(dowhaKim)[1]],
@@ -147,7 +168,7 @@ console.log(dowhaKimNo);
 const mikeKim = { name: "Mike Kim", age: 28, location: "USA" };
 const mintPark = { name: "Mint Park", age: 27, location: "Seoul" };
 const myLabour = [dowhaKim, mikeKim, mintPark];
-console.log(myLabour);
+console.log(myLabour); //[memo] 영국 나타나네...
 // 방금 만든 객체들의 배열의 2번째 항목의 name 이라는 key의 value를 출력해 보세요.
 console.log(myLabour[1].name);
 // 5개의 key를 가진 객체를 하나 만들어 변수에 대입해 보는데, 모든 key의 value가 다른 자료형이 갖도록 해보세요.
@@ -214,7 +235,10 @@ let strAry = [];
 
 console.log(strAry);
 // 위의 내용을 다른 방법으로 해볼까요?
+// [memo] 그냥 배열을 하나 만드는 건데 이렇게 어렵게 할 내용이 아니었음...
+// [memo] for / while 로
 let strAry2 = [];
+// [memo] for (let i ... ) 식으로!!
 for (i = 0; i < 6; i++) {
   let count = i + 1;
   let result = "";
@@ -242,6 +266,7 @@ for (i = 0; i < secondMatrix.length; i++) {
 //객체 하나를 선언하고 변수에 대입해보세요. 그 객체의 key와 value를 하나하나 출력해보세요.
 const testObj = { name: "김도화", age: "29", sex: "male", height: 183 };
 i = 0;
+// [memo] while문에 쓰는 변수는 좀 의미 있는 이름으로 만들 필요가 있음 (tip같은 거)
 while (i < Object.keys(testObj).length) {
   console.log(Object.keys(testObj)[i]);
   console.log(testObj[Object.keys(testObj)[i]]);
@@ -251,7 +276,9 @@ while (i < Object.keys(testObj).length) {
 // 배열을 하나 선언해보세요 (= 변수를 선언하고, 그 변수에 배열을 대입하세요). 그 배열의 길이가 3보다 크면 배열의 항목들을 출력하도록 해보세요.
 //while
 let threeAry = [];
+// [memo] 그냥 배열 하나 [1,2,3]식으로 써보란 뜻
 i = 0;
+// [memo] 그래서 if문이 먼저 나와야 함
 while (i < 5) {
   threeAry.push(i);
   if (threeAry.length > 3) {
@@ -268,6 +295,7 @@ for (i = 0; i < 5; i++) {
   }
 }
 // 배열들로 구성된 배열을 선언해보세요. (배열의 항목이 배열이 되는 식, 모두 숫자로) 각 배열의 항목인 배열의 길이가 5보다 크면, “길이가 5보다 큰 배열!”이라고 출력해보세요.
+// [memo] 매트릭스 만들었듯이 만들어보라는 뜻
 //while
 let aryAry = [];
 
@@ -280,6 +308,7 @@ let aryAry2 = [];
 //for
 
 //길이가 20 이상인 배열을 선언하고, 5번째 항목만 출력해보세요.
+// [memo] 그냥 하나의 배열 [1,2,3,4,5,....] 식으로 만들기
 //while
 let longAry = [];
 i = 0;
@@ -296,15 +325,15 @@ for (i = 0; i < 20; i++) {
 console.log(longAry2[4]);
 //아래 내용은 코드로 짜는 것이 아니라, 그 답을 써보세요. (계산기는 써도 됩니다.)
 // (17 + 21) % 3 * 2
-console.log(25.333333333333332);
+console.log(25.333333333333332); // [memo] 아님
 // 17 + 21 % 3 * 2
-console.log(31);
+console.log(31); //[memo] 아님
 // 12 * 6 > 67 && 21 < 4 / 2 * 6
-console.log(12);
+console.log(12); //[memo] 아님
 // 12 * 6 > 67 || 21 < 4 / 2 * 6
 console.log(true);
 // let a = 21; let b = a++; a, b의 값은?
-console.log("a = 21", "b = 22");
+console.log("a = 21", "b = 22"); //[memo] 아님
 // let a = 21; let b = ++a; a, b의 값은?
 console.log("a = 22", "b = 22");
 // let a = 22; ++a > 22
@@ -383,7 +412,7 @@ function weather(temperature, humidity) {
   } else {
     return "hot";
   }
-}
+} //[memo] humidity는?
 
 console.log(weather(15, 72)); // "It’s mild and humid."
 console.log(weather(25, 36)); // "It’s hot and dry."
@@ -397,7 +426,7 @@ console.log(weather(-5, 12)); // "It’s cold and arid."
 
 // humidity < 20: "arid",
 // 20 <= humidity < 50: "dry",
-// 50 <= humidity < 75: "humid" 
+// 50 <= humidity < 75: "humid"
 // 75 <= humidity : "super humid"
 */
 
@@ -417,7 +446,7 @@ console.log(fortune());
 <실행 예제>
 function n_sum(n) {
 	for (i = 0, i < n, i++) {
-		
+
 	}
 }
 console.log( n_sum(4) ); // 10
@@ -433,7 +462,7 @@ function key_value(obj) {
 }
 
 let obj_test = { name: "James", age: 15, dogs: ["Jody", "Bunny"] };
-console.log( key_value(obj_test) ); 
+console.log( key_value(obj_test) );
 // "key: name"
 // "value: James"
 // "key: age"
@@ -451,7 +480,7 @@ function string_increment(string_array) {
 }
 
 let test_string_array = ["Grape", "Orange", "Melon", "Kiwi"];
-console.log( string_increment(test_string_array) ); 
+console.log( string_increment(test_string_array) );
 // "Grape"
 // "Grape, Orange"
 // "Grape, Orange, Melon"
@@ -467,7 +496,7 @@ function string_checker(string_array) {
 }
 
 let test_string_array2 = ["Giraffe", "Bird", "Lion", "Tiger"];
-console.log( string_checker(test_string_array2) ); 
+console.log( string_checker(test_string_array2) );
 // ["GIRAFFE", "bird", "lion", "tiger"]
 */
 
