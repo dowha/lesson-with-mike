@@ -31,6 +31,7 @@ console.log(typeof id1, typeof id2, typeof id3, typeof id4, typeof id5);
 console.log(id1, id2, id3, id4, id5);
 // 자유롭게 문자열 하나를 변수에 대입해보세요.
 const intro = "안녕하세요, 저는 김도화입니다."; // [memo] const 쓴 이유는?
+// 바뀌지 않는 경우에 let보다 const를 쓰는 버릇?을 들이는게 좋다고 봐서...
 console.log(intro);
 // 그 문자열의 길이는?
 console.log(intro.length);
@@ -64,11 +65,13 @@ console.log(idol);
 // 그 배열의 길이를 계산해보세요.
 console.log(idol.length);
 // 그 배열의 2번째 항목을 다른 것으로 바꿔보세요.
-const newIdol = idol.splice(1, 1, "여자친구");
+idol.splice(1, 1, "여자친구");
 console.log(idol);
 // 다른 방법으로 해보세요.
-delete idol[1];
-idol[1] = "BTS"; // [memo] 이럴 때는 delete하지 말고, 바로 indexing 하고 해도 돼요.
+// delete idol[1];
+idol[1] = "BTS";
+
+// [memo] 이럴 때는 delete하지 말고, 바로 indexing 하고 해도 돼요. // [solved]
 //delete 연산자는 배열에서는 가급적 쓰지 말고, 객체에서만 쓰기를 권해요.
 //그 자리가 비워지기 때문에!
 //왜냐하면 배열에서 중간에 한 항목이 빠져버리면 그걸 위해 for문을 쓸 때 잘 되지 않을 수 있어요.
@@ -87,7 +90,8 @@ idol[1] = "BTS"; // [memo] 이럴 때는 delete하지 말고, 바로 indexing �
 // >
 console.log(idol);
 // 그 배열의 3번째 항목을 없애보세요.
-delete idol[2]; // [memo] 마찬가지 이유로 사용하지 말고.
+// delete idol[2]; // [memo] 마찬가지 이유로 사용하지 말고. // [solved]
+idol.splice(2, 1);
 //이럴 때에는 splice를 쓰면 돼요.
 //splice 문서 살펴보기 >> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
 console.log(idol);
@@ -140,6 +144,7 @@ matrixSecond[3] = [13, 14, 15, 16];
 matrixSecond[4] = [17, 18, 19, 20];
 // [memo] 열을 먼저 쓰라는 건 1, 5, 9, 13, 17이 먼저 오게
 // [memo] 행을 먼저 쓰는지, 열을 먼저 쓰는지는 나중에 매트릭스를 활용한 라이브러리 같은 걸 쓸 때 중요할 수 있음
+// 수업시간에 물어보기.
 console.log(matrixSecond);
 // 위의 모양을 가진 행렬을 배열로 표현해보세요. (열을 먼저 써보세요.)
 console.log("*잘 모르겠습니다.");
@@ -147,20 +152,22 @@ console.log("*잘 모르겠습니다.");
 const dowhaKim = { name: "Dowha Kim", age: 29, location: "Bangkok" };
 console.log(dowhaKim);
 // 그 객체의 name 이라는 key의 value를 출력해보세요.
-const name = dowhaKim.name; //[memo]왜 변수를 선언했는지?
-console.log(name);
+// const name = dowhaKim.name; //[memo]왜 변수를 선언했는지? // 별 생각없이...
+console.log(dowhaKim.name);
 // 그 객체의 name 이라는 key의 value를 다른 것으로 바꿔보세요.
 dowhaKim.name = "Fado";
 console.log(dowhaKim);
 // 그 객체에는 어떤 key들이 있나요?
 console.log(Object.keys(dowhaKim));
 // 그 객체에는 어떤 value들이 있나요?
-// [memo] https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#Methods_of_the_Object_constructor
-console.log(
+// [memo] https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object#Methods_of_the_Object_constructor // [solved]
+/* console.log(
   dowhaKim[Object.keys(dowhaKim)[0]],
   dowhaKim[Object.keys(dowhaKim)[1]],
   dowhaKim[Object.keys(dowhaKim)[2]]
 );
+*/
+console.log(Object.values(dowhaKim));
 // 그 객체에 key와 value의 쌍은 몇개가 있나요?
 const dowhaKimNo = Object.keys(dowhaKim).length;
 console.log(dowhaKimNo);
@@ -239,12 +246,15 @@ console.log(strAry);
 // [memo] for / while 로
 let strAry2 = [];
 // [memo] for (let i ... ) 식으로!!
+
+/*
 for (i = 0; i < 6; i++) {
   let count = i + 1;
   let result = "";
   for (let m = 0; m < count; m++) result += "a"; // 잘 모르겠음
   strAry2.push(result);
 }
+*/
 console.log(strAry2);
 // 아래 모양을 가진 행렬을 만들어 변수에 대입해보고, 행렬의 행/열/항목을 출력해보세요. 예) “1행 3열은 3입니다." 1행을 모두 출력한 다음, 2행을 출력합니다.
 const secondMatrix = [
@@ -264,19 +274,19 @@ for (i = 0; i < secondMatrix.length; i++) {
   }
 }
 //객체 하나를 선언하고 변수에 대입해보세요. 그 객체의 key와 value를 하나하나 출력해보세요.
-const testObj = { name: "김도화", age: "29", sex: "male", height: 183 };
+const introduceObj = { name: "김도화", age: "29", sex: "male", height: 183 };
 i = 0;
-// [memo] while문에 쓰는 변수는 좀 의미 있는 이름으로 만들 필요가 있음 (tip같은 거)
-while (i < Object.keys(testObj).length) {
-  console.log(Object.keys(testObj)[i]);
-  console.log(testObj[Object.keys(testObj)[i]]);
+// [memo] while문에 쓰는 변수는 좀 의미 있는 이름으로 만들 필요가 있음 (tip같은 거) // [solved]
+while (i < Object.keys(introduceObj).length) {
+  console.log(Object.keys(introduceObj)[i]);
+  console.log(introduceObj[Object.keys(introduceObj)[i]]);
   i++;
 }
 //9~12번은  for문과 while문으로 각각 해보세요.
 // 배열을 하나 선언해보세요 (= 변수를 선언하고, 그 변수에 배열을 대입하세요). 그 배열의 길이가 3보다 크면 배열의 항목들을 출력하도록 해보세요.
 //while
 let threeAry = [];
-// [memo] 그냥 배열 하나 [1,2,3]식으로 써보란 뜻
+// [memo] 그냥 배열 하나 [1,2,3]식으로 써보란 뜻 // 근데 반복문을 이용하려면...?
 i = 0;
 // [memo] 그래서 if문이 먼저 나와야 함
 while (i < 5) {
@@ -295,13 +305,27 @@ for (i = 0; i < 5; i++) {
   }
 }
 // 배열들로 구성된 배열을 선언해보세요. (배열의 항목이 배열이 되는 식, 모두 숫자로) 각 배열의 항목인 배열의 길이가 5보다 크면, “길이가 5보다 큰 배열!”이라고 출력해보세요.
-// [memo] 매트릭스 만들었듯이 만들어보라는 뜻
+// [memo] 매트릭스 만들었듯이 만들어보라는 뜻 // 뭔가 이상...
 //while
+console.log("now here!");
 let aryAry = [];
-
+i = 0;
+while (i < 5) {
+  aryAry[i] = new Array();
+  i++;
+}
+if (Object.keys(aryAry).length >= 5) {
+  console.log("길이가 5보다 큰 배열!");
+}
+console.log(aryAry);
 //for
 let aryAry2 = [];
-
+for (i = 0; i < 5; i++) {
+  aryAry2[i] = new Array(1, 2, 3, 4, 5);
+}
+if (Object.keys(aryAry2).length >= 5) {
+  console.log("길이가 5보다 큰 배열!");
+}
 // 위의 배열에서, 각 배열의 항목인 배열의 길이가 3보다 작거나 같으면, 그 배열 (항목인 배열)의 항목들에 3을 더해보세요. 예) [[1, 2, 3], [1, 2, 3, 4]]이면, [[4, 5, 6], [1, 2, 3, 4]]가 되도록
 //while
 
@@ -325,15 +349,15 @@ for (i = 0; i < 20; i++) {
 console.log(longAry2[4]);
 //아래 내용은 코드로 짜는 것이 아니라, 그 답을 써보세요. (계산기는 써도 됩니다.)
 // (17 + 21) % 3 * 2
-console.log(25.333333333333332); // [memo] 아님
+console.log(2); // [memo] 아님 // [solved] %를 /로 착각.
 // 17 + 21 % 3 * 2
-console.log(31); //[memo] 아님
+console.log(20); //[memo] 아님 // [solved]
 // 12 * 6 > 67 && 21 < 4 / 2 * 6
-console.log(12); //[memo] 아님
+console.log(false); //[memo] 아님 // [solved]
 // 12 * 6 > 67 || 21 < 4 / 2 * 6
 console.log(true);
 // let a = 21; let b = a++; a, b의 값은?
-console.log("a = 21", "b = 22"); //[memo] 아님
+console.log("a = 22", "b = 21"); //[memo] 아님 // [solved]
 // let a = 21; let b = ++a; a, b의 값은?
 console.log("a = 22", "b = 22");
 // let a = 22; ++a > 22
@@ -412,7 +436,7 @@ function weather(temperature, humidity) {
   } else {
     return "hot";
   }
-} //[memo] humidity는?
+} //[memo] humidity는? // 두개를 동시에 어떻게 넣죠...?
 
 console.log(weather(15, 72)); // "It’s mild and humid."
 console.log(weather(25, 36)); // "It’s hot and dry."
@@ -456,7 +480,7 @@ console.log( n_sum(6) ); // 21
 // 객체를 넣으면 key와 value를 하나씩 출력하는 함수를 만들어보세요. (hint: key들의 목록을 알면 쉽겠죠?)
 
 /*
-<실행 예제>
+<실행 예제> 
 function key_value(obj) {
 	...
 }
