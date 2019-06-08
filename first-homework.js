@@ -95,8 +95,10 @@ idol.splice(2, 1);
 //이럴 때에는 splice를 쓰면 돼요.
 //splice 문서 살펴보기 >> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
 console.log(idol);
+
+
 // 그 배열의 2번째와 3번째 항목 사이에 다른 항목 3개를 넣어보세요.
-idol.splice(2, 0, "아이오아이", "오마이걸", "아이즈원");
+idol.splice(2, 1, "아이오아이", "오마이걸", "아이즈원");
 // 그 배열의 마지막에 한 항목을 넣어보세요.
 idol.push("트와이스");
 console.log(idol);
@@ -130,6 +132,12 @@ const matrix = [
   [13, 14, 15, 16],
   [17, 18, 19, 20]
 ];
+let matrix_transposed = [
+  [1, 5, 9, 13, 17],
+  [2, 6, 10, 14, 18],
+  [3, 7, 11, 15, 19],
+  [4, 8, 12, 16, 20]
+];
 console.log(matrix);
 const matrixSecond = new Array();
 matrixSecond[0] = new Array();
@@ -156,6 +164,19 @@ console.log(dowhaKim);
 console.log(dowhaKim.name);
 // 그 객체의 name 이라는 key의 value를 다른 것으로 바꿔보세요.
 dowhaKim.name = "Fado";
+dowhaKim["name"] = "Fado";
+
+// let prices = {
+//   grape: 1000,
+//   mango: 1500
+// }
+//
+// function get_price(fruit) {
+//   return prices[fruit];
+// }
+//
+// get_price("grape");
+
 console.log(dowhaKim);
 // 그 객체에는 어떤 key들이 있나요?
 console.log(Object.keys(dowhaKim));
@@ -238,7 +259,13 @@ if (text2.length >= 5) {
  배열의 길이는 5보다 크게 하고, 문자열의 길이는 모두 다르게 만들어보세요.
  그리고 그 배열의 항목들을 모두 출력해보세요.
  */
-let strAry = [];
+let strAry = [
+  "abcdefghijklmn",
+  "abcdefghijklmnop",
+  "abcdefghijklmnopqrst",
+  "abcdefghijklmnopqrstuvwxyz",
+  "abcdefghijklmnopqrstuvw"
+];
 
 console.log(strAry);
 // 위의 내용을 다른 방법으로 해볼까요?
@@ -283,7 +310,7 @@ while (i < Object.keys(introduceObj).length) {
   i++;
 }
 //9~12번은  for문과 while문으로 각각 해보세요.
-// 배열을 하나 선언해보세요 (= 변수를 선언하고, 그 변수에 배열을 대입하세요). 그 배열의 길이가 3보다 크면 배열의 항목들을 출력하도록 해보세요.
+// 배열을 하나 선언해보세요 (= 변수를 선언하고, 그 변수에 배열을 대입하세요). 그 배열의 길이가 3보다 크면 배열의 항목들을 "하나씩~" 출력하도록 해보세요.
 //while
 let aryAry3 = [1, 2, 3, 4, 5];
 if (aryAry3.length > 3) {
@@ -299,6 +326,10 @@ if (aryAry3.length > 3) {
 
 // 배열들로 구성된 배열을 선언해보세요. (배열의 항목이 배열이 되는 식, 모두 숫자로) 각 배열의 항목인 배열의 길이가 5보다 크면, “길이가 5보다 큰 배열!”이라고 출력해보세요.
 // [memo] 매트릭스 만들었듯이 만들어보라는 뜻 // 뭔가 이상...
+let arrays_in_array = [
+  [1, 2, 3],
+  [4, 5, 6]
+]
 //while
 console.log("now here!");
 let aryAry = [];
@@ -324,6 +355,9 @@ if (Object.keys(aryAry2).length >= 5) {
 
 //for
 
+// i = i + 1 <=> i += 1
+
+
 //길이가 20 이상인 배열을 선언하고, 5번째 항목만 출력해보세요.
 // [memo] 그냥 하나의 배열 [1,2,3,4,5,....] 식으로 만들기
 //while
@@ -340,6 +374,20 @@ for (i = 0; i < 20; i++) {
   longAry2.push(i);
 }
 console.log(longAry2[4]);
+
+// 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+// 0 1 2 0 1 2 0 1 2 0 1  2  0  1  2  0  1  2  0  1  2
+
+// 10000 => 10,000
+//
+// let seperate_1000 = function(ns) {
+//   for (let i = 0; i > ns.length; i--) {
+//     if ( (ns.length - i - 1) % 3) {
+//       ...
+//     }
+//   }
+// }
+
 //아래 내용은 코드로 짜는 것이 아니라, 그 답을 써보세요. (계산기는 써도 됩니다.)
 // (17 + 21) % 3 * 2
 console.log(2); // [memo] 아님 // [solved] %를 /로 착각.
@@ -350,8 +398,12 @@ console.log(false); //[memo] 아님 // [solved]
 // 12 * 6 > 67 || 21 < 4 / 2 * 6
 console.log(true);
 // let a = 21; let b = a++; a, b의 값은?
+// let b = a++;
+// let b = a; >> a = a + 1;
 console.log("a = 22", "b = 21"); //[memo] 아님 // [solved]
 // let a = 21; let b = ++a; a, b의 값은?
+// let b = ++a;
+// a = a + 1 >> let b = a;
 console.log("a = 22", "b = 22");
 // let a = 22; ++a > 22
 console.log(true);
@@ -393,11 +445,27 @@ console.log(power(10));
 
 // 두 숫자를 입력해서, 둘다 짝수이면 true를 반환하고, 아니면 false를 반환하는 함수를 만들어보세요.
 function two_evens(a, b) {
+  //variation 1
   if (a % 2 === 0 && b % 2 === 0) {
     return true;
   } else {
     return false;
   }
+  // variation 2
+  // return a % 2 === 0 && b % 2 === 0;
+
+  // variation 3
+  // let result;
+  // if (a % 2 === 0 && b % 2 === 0) {
+  //   result = true;
+  // } else {
+  //   result = false;
+  // }
+  // return result;
+
+  // variation 4
+  // let result = a % 2 === 0 && b % 2 === 0;
+  // return result;
 }
 console.log(two_evens(3, 5));
 console.log(two_evens(4, 5));
@@ -422,14 +490,21 @@ console.log(bus_fare(23));
 
 // 기온과 습도를 입력하면, 날씨에 대해 설명을 출력하는 함수를 만들어보세요. (조건은 주석문 참고)
 function weather(temperature, humidity) {
+  // temperature: number;
+  // humidity: number;
+  let result = "";
   if (temperature < 5) {
-    return "cold";
-  } else if (5 <= temperature < 25) {
-    return "mild";
+    result += "cold";
+  } else if (5 <= temperature && temperature < 25) {
+    result += "mild";
   } else {
-    return "hot";
+    result += "hot";
   }
+  return result;
 } //[memo] humidity는? // 두개를 동시에 어떻게 넣죠...?
+
+// 3 < a < 7
+// 3 < a && a < 7
 
 console.log(weather(15, 72)); // "It’s mild and humid."
 console.log(weather(25, 36)); // "It’s hot and dry."
@@ -462,9 +537,7 @@ console.log(fortune());
 /*
 <실행 예제>
 function n_sum(n) {
-	for (i = 0, i < n, i++) {
-
-	}
+	...
 }
 console.log( n_sum(4) ); // 10
 console.log( n_sum(6) ); // 21
@@ -473,7 +546,7 @@ console.log( n_sum(6) ); // 21
 // 객체를 넣으면 key와 value를 하나씩 출력하는 함수를 만들어보세요. (hint: key들의 목록을 알면 쉽겠죠?)
 
 /*
-<실행 예제> 
+<실행 예제>
 function key_value(obj) {
 	...
 }
