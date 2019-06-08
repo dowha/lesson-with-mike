@@ -285,25 +285,18 @@ while (i < Object.keys(introduceObj).length) {
 //9~12번은  for문과 while문으로 각각 해보세요.
 // 배열을 하나 선언해보세요 (= 변수를 선언하고, 그 변수에 배열을 대입하세요). 그 배열의 길이가 3보다 크면 배열의 항목들을 출력하도록 해보세요.
 //while
-let threeAry = [];
+let aryAry3 = [1, 2, 3, 4, 5];
+if (aryAry3.length > 3) {
+  let i = 0;
+  while (i < aryAry3.length) {
+    console.log(aryAry3[i]);
+    i++;
+  }
+}
 // [memo] 그냥 배열 하나 [1,2,3]식으로 써보란 뜻 // 근데 반복문을 이용하려면...?
-i = 0;
-// [memo] 그래서 if문이 먼저 나와야 함
-while (i < 5) {
-  threeAry.push(i);
-  if (threeAry.length > 3) {
-    console.log(threeAry);
-  }
-  i++;
-}
+
 //for
-let threeAry2 = [];
-for (i = 0; i < 5; i++) {
-  threeAry2.push(i);
-  if (threeAry2.length > 3) {
-    console.log(threeAry2);
-  }
-}
+
 // 배열들로 구성된 배열을 선언해보세요. (배열의 항목이 배열이 되는 식, 모두 숫자로) 각 배열의 항목인 배열의 길이가 5보다 크면, “길이가 5보다 큰 배열!”이라고 출력해보세요.
 // [memo] 매트릭스 만들었듯이 만들어보라는 뜻 // 뭔가 이상...
 //while
