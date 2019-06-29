@@ -71,7 +71,7 @@ aFactorB(10, 10);
 
 // 8
 function wordsLength(a, b) {
-  if (a.split(" ").length > b.split(" ").lentgh) {
+  if (a.split(" ").length > b.split(" ").length) {
     return a;
   } else if (a.split(" ").length < b.split(" ").length) {
     return b;
@@ -85,23 +85,44 @@ wordsLength("학교에 안 갔어", "학교에 가기가 싫었어");
 
 // 9
 function wordsLength2(a, b) {
-  if (a.split(" ").length > b.split(" ").lentgh) {
+  if (a.split(" ").length > b.split(" ").length) {
     return a;
   } else if (a.split(" ").length < b.split(" ").length) {
     return b;
   } else {
-    return a;
+    if (a.length > b.length) {
+      return a;
+    } else {
+      return b;
+    }
   }
 }
-
 wordsLength2("학교에 안 갔어", "학교에 가기가 싫어서 그랬어");
 wordsLength2("학교에 안 갔어", "학교에 가기가 싫었어");
 
 // 10
+// if문으로 charAt을 비교할 수도 있겠지만...
+function wordChain(a, b) {
+  return b.startsWith(a.charAt(a.length - 1));
+}
+
+wordChain("apple", "elephant");
+wordChain("apple", "lion");
 
 // 11
+function numCiphers(a) {
+  return a.toString().length;
+}
+
+numCiphers(254);
+numCiphers(30112);
 
 // 12
+function tax(a) {
+  return a * 0.4 * 0.22;
+}
+tax(100);
+tax(500);
 
 // 13
 
