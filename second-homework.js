@@ -79,6 +79,35 @@ while (i < arrays_in_array.length) {
   }
   i++;
 }
+
+//for
+let arrays_in_array3 = [[1, 2, 3], [4, 5, 6, 7, 8], [7, 8, 9, 10, 11, 12]];
+for (let i = 0; i < arrays_in_array3.length; i++) {
+  if (Object.keys(arrays_in_array3[i]).length > 5) {
+    console.log(
+      "[" + arrays_in_array3[i] + "]" + "는 " + "길이가 5보다 큰 배열!"
+    );
+  }
+}
+
+// 위의 배열에서, 각 배열의 항목인 배열의 길이가 3보다 작거나 같으면, 그 배열 (항목인 배열)의 항목들에 3을 더해보세요. 예) [[1, 2, 3], [1, 2, 3, 4]]이면, [[4, 5, 6], [1, 2, 3, 4]]가 되도록
+//while
+i = 0;
+while (i < arrays_in_array.length) {
+  if (arrays_in_array[i].length <= 3) {
+    j = 0;
+    while (j < arrays_in_array[i].length) {
+      console.log(i);
+      console.log(j);
+      console.log(arrays_in_array[i][j]);
+      arrays_in_array[i][j] += 3;
+      j++;
+    }
+  }
+  i++;
+}
+console.log(arrays_in_array);
+
 //for
 let arrays_in_array2 = [
   [3, 4, 5],
@@ -92,17 +121,6 @@ for (let i = 0; i < arrays_in_array2.length; i++) {
     );
   }
 }
-// 위의 배열에서, 각 배열의 항목인 배열의 길이가 3보다 작거나 같으면, 그 배열 (항목인 배열)의 항목들에 3을 더해보세요. 예) [[1, 2, 3], [1, 2, 3, 4]]이면, [[4, 5, 6], [1, 2, 3, 4]]가 되도록
-//while
-i = 0;
-while (i < arrays_in_array.length) {
-  if (Object.keys(arrays_in_array[i]).length <= 3) {
-    Object.keys(arrays_in_array[i])[i] += 3;
-  }
-  i++;
-}
-console.log(arrays_in_array);
-//for
 
 // i = i + 1 <=> i += 1
 
@@ -133,7 +151,45 @@ let longAry = [
   21
 ];
 
+i = 0;
+while (i < longAry.length) {
+  if (longAry[i] % 5 == 0) {
+    console.log(longAry[i]);
+  }
+  i++;
+}
+
 //for
+
+let longAry2 = [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21
+];
+
+for (let i = 0; i < longAry2.length; i++) {
+  if (longAry2[i] % 5 == 0) {
+    console.log(longAry2[i]);
+  }
+}
 
 // 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
 // 0 1 2 0 1 2 0 1 2 0 1  2  0  1  2  0  1  2  0  1  2
@@ -154,6 +210,7 @@ function weather(temperature, humidity) {
   // temperature: number;
   // humidity: number;
   let result = "";
+  let result2 = "";
   if (temperature < 5) {
     result += "cold";
   } else if (5 <= temperature && temperature < 25) {
@@ -161,7 +218,16 @@ function weather(temperature, humidity) {
   } else {
     result += "hot";
   }
-  return result;
+  if (humidity < 20) {
+    result2 += "arid";
+  } else if (humidity < 50) {
+    result2 += "dry";
+  } else if (humidity < 75) {
+    result2 += "humid";
+  } else {
+    result2 += "super humid";
+  }
+  return "It's " + result + " and " + result2 + ".";
 } //[memo] humidity는? // 두개를 동시에 어떻게 넣죠...?
 
 // 3 < a < 7
@@ -197,9 +263,8 @@ console.log(n_sum(6)); // 21
 // 객체를 넣으면 key와 value를 하나씩 출력하는 함수를 만들어보세요. (hint: key들의 목록을 알면 쉽겠죠?)
 function key_value(obj) {
   for (let i = 0; i < Object.keys(obj).length; i++) {
-    return (
-      "key: " + Object.keys(obj)[i] + "value: " + obj[Object.keys(obj)[i]] + ""
-    );
+    console.log("key: " + Object.keys(obj)[i]);
+    console.log("value: " + obj[Object.keys(obj)[i]]);
   }
 }
 
@@ -215,13 +280,15 @@ console.log(key_value(obj_test));
 
 // 문자열로 된 배열을 넣으면 항목들을 하나씩 늘려 가면서 출력하는 함수를 만들어보세요 (예제를 참고).
 function string_increment(string_array) {
+  let string_result = [];
   for (i = 0; i < string_array.length; i++) {
-    return string_array[i] + "";
+    string_result[i] = string_array[i];
+    console.log(string_result);
   }
 }
 
 let test_string_array = ["Grape", "Orange", "Melon", "Kiwi"];
-console.log(string_increment(test_string_array));
+string_increment(test_string_array);
 // "Grape"
 // "Grape, Orange"
 // "Grape, Orange, Melon"
@@ -232,30 +299,34 @@ console.log(string_increment(test_string_array));
 */
 
 // 문자열로 된 배열을 넣으면, 길이가 5보다 긴 문자열은 모두 대문자로, 그렇지 않으면 모두 소문자로 바꿔보세요. (반환하지 않고 값을 직접 바꾸기)
-// function string_checker(string_array) {
-//   for (let i = 0; i < string_array.length; i++){
-//     if (string_array.length[i] > 5) {
-//       string_array[i].toUpperCase();
-//     } else {
-//      string_array[i].toLowerCase();
-//     }
-//   }
+function string_checker(string_array) {
+  for (let i = 0; i < string_array.length; i++) {
+    if (string_array[i].length > 5) {
+      string_array[i] = string_array[i].toUpperCase();
+    } else {
+      string_array[i] = string_array[i].toLowerCase();
+    }
+  }
+}
 
-// let test_string_array2 = ["Giraffe", "Bird", "Lion", "Tiger"];
-// console.log(string_checker(test_string_array2));
-// ["GIRAFFE", "bird", "lion", "tiger"]
+let test_string_array2 = ["Giraffe", "Bird", "Lion", "Tiger"];
+string_checker(test_string_array2);
+console.log(test_string_array2); // ["GIRAFFE", "bird", "lion", "tiger"]
 
 // 가전 기구들의 전원 상태를 담은 객체가 있으면, 가전 기구의 이름을 넣어 해당 가전 기구의 전원 상태가 true/false 사이에서 전환되는 함수를 만들어보세요.
-// let appliance = {
-//   microwave: false,
-//   fridge: false,
-//   washer: false,
-//   television: false
-// };
-// function power_toggle(app) {
-//   if ((appliance.app = true)) {
-//   }
-// }
+let appliance = {
+  microwave: false,
+  fridge: false,
+  washer: false,
+  television: false
+};
+function power_toggle(app) {
+  if (appliance[app] == true) {
+    appliance[app] = false;
+  } else {
+    appliance[app] = true;
+  }
+}
 
 power_toggle("microwave");
 console.log(appliance.microwave); // true
