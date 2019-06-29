@@ -71,7 +71,7 @@ aFactorB(10, 10);
 
 // 8
 function wordsLength(a, b) {
-  if (a.split(" ").length > b.split(" ").lentgh) {
+  if (a.split(" ").length > b.split(" ").length) {
     return a;
   } else if (a.split(" ").length < b.split(" ").length) {
     return b;
@@ -85,30 +85,74 @@ wordsLength("학교에 안 갔어", "학교에 가기가 싫었어");
 
 // 9
 function wordsLength2(a, b) {
-  if (a.split(" ").length > b.split(" ").lentgh) {
+  if (a.split(" ").length > b.split(" ").length) {
     return a;
   } else if (a.split(" ").length < b.split(" ").length) {
     return b;
   } else {
-    return a;
+    if (a.length > b.length) {
+      return a;
+    } else {
+      return b;
+    }
   }
 }
-
 wordsLength2("학교에 안 갔어", "학교에 가기가 싫어서 그랬어");
 wordsLength2("학교에 안 갔어", "학교에 가기가 싫었어");
 
 // 10
+// if문으로 charAt을 비교할 수도 있겠지만...
+function wordChain(a, b) {
+  return b.startsWith(a.charAt(a.length - 1));
+}
+
+wordChain("apple", "elephant");
+wordChain("apple", "lion");
 
 // 11
+function numCiphers(a) {
+  return a.toString().length;
+}
+
+numCiphers(254);
+numCiphers(30112);
 
 // 12
+function tax(a) {
+  return a * 0.4 * 0.22;
+}
+
+tax(100);
+tax(500);
 
 // 13
+function multiplesBetween(a, b) {
+  let multiplesResult = Math.floor(a / b);
+  for (let i = 1; i < multiplesResult + 1; i++) {
+    console.log(i * b);
+  }
+  return multiplesResult;
+}
+
+multiplesBetween(60, 5);
+multiplesBetween(30, 7);
 
 // 14
+// 값이 다르게 나옴.
+function distanceBetween([a, b], [c, d]) {
+  return Math.sqrt(Math.pow(a - c, 2) + Math.pow(b - d, 2));
+}
+
+distanceBetween([4, 5], [3, 2]);
+distanceBetween([8, 5], [3, 7]);
 
 // 15
+function middlePoint([a, b], [c, d]) {
+  return [(a + c) / 2, (b + d) / 2];
+}
 
+middlePoint([4, 5], [3, 2]);
+middlePoint([8, 5], [3, 7]);
 // 16
 
 // 17
