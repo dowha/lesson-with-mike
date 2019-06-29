@@ -155,6 +155,9 @@ middlePoint([4, 5], [3, 2]);
 middlePoint([8, 5], [3, 7]);
 // 16
 
+maxAndMin([1, 2, 5]);
+maxAndMin([-5, 2, 10, 7, 9, 50]);
+
 // 17
 
 // 18

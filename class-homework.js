@@ -18,10 +18,10 @@ console.log(myFridge.model); // "모델 1";
 class Fridge {
   constructor(model) {
     this.model = model;
-    this.power = undefined;
+    this.power = false;
   }
   toggle_power() {
-    return (this.power = true);
+    this.power = !this.power;
   }
 }
 
@@ -182,13 +182,12 @@ class Book {
     this.author = author;
     this.year = year;
     this.publisher = publisher;
-    this.genre = [];
   }
   get_author() {
     return this.author;
   }
   set_genre(g) {
-    return (this.genre += g);
+    this.genre = g;
   }
 }
 
@@ -209,27 +208,30 @@ console.log(myBook.genre); // "소설"
 
 class Book {
   constructor(name, author, year, publisher) {
-    this.name = name;
-    this.author = author;
-    this.year = year;
-    this.publisher = publisher;
-    this.genre = [];
-    this.info = {};
+    this.info = {
+      이름: name,
+      작가: author,
+      연도: year,
+      출판사: publisher
+    };
+    this.name = this.info["이름"];
+    this.author = this.info["작가"];
+    this.year = this.info["연도"];
+    this.publisher = this.info["출판사"];
   }
   get_author() {
-    return this.author;
+    return this.info["작가"];
   }
   set_genre(g) {
-    return (this.genre += g);
+    this.info["장르"] = g;
+    this.genre = this.info["장르"];
   }
   print_info() {
-    this.info["이름"] = this.name;
-    this.info["작가"] = this.author;
-    this.info["연도"] = this.year;
-    this.info["출판사"] = this.publisher;
     console.log("이 책의 정보");
-    for (let i = 0; i < this.info.length; i++) {
-      console.log(this.info[i]);
+    let keys = Object.keys(this.info);
+    for (let i = 0; i < keys.length; i++) {
+      let k = Object.keys(this.info)[i];
+      console.log(keys[i] + ": " + this.info[k]);
     }
   }
 }
@@ -262,89 +264,112 @@ myBook.print_info();
 // 예를 들어 "author"를 입력하면 작가명을 반환하면 됩니다.
 // 그러나 해당 키워드가 없으면 null을 반환하세요.
 
-// <실행 예제>
-// class Book {
-//   constructor(name, author, year, publisher) {
-//     ...
+class Book {
+  constructor(name, author, year, publisher) {
+    this.info = {
+      이름: name,
+      작가: author,
+      연도: year,
+      출판사: publisher
+    };
+    this.name = this.info["이름"];
+    this.author = this.info["작가"];
+    this.year = this.info["연도"];
+    this.publisher = this.info["출판사"];
+  }
+  get_author() {
+    return this.info["작가"];
+  }
+  set_genre(g) {
+    this.info["장르"] = g;
+    this.genre = this.info["장르"];
+  }
+  print_info() {
+    console.log("이 책의 정보");
+    let keys = Object.keys(this.info);
+    for (let i = 0; i < keys.length; i++) {
+      let k = Object.keys(this.info)[i];
+      console.log(keys[i] + ": " + this.info[k]);
+    }
+  }
+  get_info(item) {
+    if (this.info[item]) {
+      return this.info[item];
+    } else {
+      return null;
+    }
+  }
+}
 
-//   get_author() {
-//     ...
-
-//   set_genre(g) {
-//     ...
-
-//   print_info() {
-//     ...
-
-//   get_info(item) {
-//     ...
-
-// }
-
-// let myBook = new Book("나의 라임오렌지나무", "마우루 지 바스콘셀루스", 1968, "Editora Melhoramentos");
-// console.log(myBook.get_author()); // "마우루 지 바스콘셀루스"
-// myBook.print_info();
-// // "이 책의 정보"
-// // "이름: 나의 라임오렌지나무"
-// // "작가: 마우루 지 바스콘셀루스"
-// // "출판연도: 1968"
-// // "출판사: Editora Melhoramentos"
-// myBook.set_genre("소설");
-// console.log(myBook.genre); // "소설"
-// myBook.print_info();
-// // "이 책의 정보"
-// // "이름: 나의 라임오렌지나무"
-// // "작가: 마우루 지 바스콘셀루스"
-// // "출판연도: 1968"
-// // "출판사: Editora Melhoramentos"
-// // "장르: 소설"
-// console.log(myBook.get_info("author")); // "마우루 지 바스콘셀루스"
-// console.log(myBook.get_info("score")); // null
+let myBook = new Book(
+  "나의 라임오렌지나무",
+  "마우루 지 바스콘셀루스",
+  1968,
+  "Editora Melhoramentos"
+);
+console.log(myBook.get_author()); // "마우루 지 바스콘셀루스"
+myBook.print_info();
+myBook.set_genre("소설");
+console.log(myBook.genre); // "소설"
+console.log(myBook.get_info("author")); // "마우루 지 바스콘셀루스"
+console.log(myBook.get_info("score")); // null
 
 // Book 클래스에 아래의 기능을 추가해 보세요.
 // 특정 키워드와 값을 받으면 해당 정보를 저장하는 메소드 set_info(key, value)
 // key가 속성이 되고, value가 그 값이 됩니다.
 
-// <실행 예제>
-// class Book {
-//   constructor(name, author, year, publisher) {
-//     ...
+class Book {
+  constructor(name, author, year, publisher) {
+    this.info = {
+      이름: name,
+      작가: author,
+      연도: year,
+      출판사: publisher
+    };
+    this.name = this.info["이름"];
+    this.author = this.info["작가"];
+    this.year = this.info["연도"];
+    this.publisher = this.info["출판사"];
+  }
+  get_author() {
+    return this.info["작가"];
+  }
+  set_genre(g) {
+    this.info["장르"] = g;
+    this.genre = this.info["장르"];
+  }
+  print_info() {
+    console.log("이 책의 정보");
+    let keys = Object.keys(this.info);
+    for (let i = 0; i < keys.length; i++) {
+      let k = Object.keys(this.info)[i];
+      console.log(keys[i] + ": " + this.info[k]);
+    }
+  }
+  get_info(item) {
+    if (this.info[item]) {
+      return this.info[item];
+    } else {
+      return null;
+    }
+  }
+  set_info(key, value) {
+    this.info[key] = value;
+  }
+}
 
-//   get_author() {
-//     ...
-
-//   set_genre(g) {
-//     ...
-
-//   print_info() {
-//     ...
-
-//   get_info(item) {
-//     ...
-
-//   set_info(key, value) {
-//     ...
-
-// }
-
-// let myBook = new Book("나의 라임오렌지나무", "마우루 지 바스콘셀루스", 1968, "Editora Melhoramentos");
-// console.log(myBook.get_author()); // "마우루 지 바스콘셀루스"
-// myBook.print_info();
-// // "이 책의 정보"
-// // "이름: 나의 라임오렌지나무"
-// // "작가: 마우루 지 바스콘셀루스"
-// // "출판연도: 1968"
-// // "출판사: Editora Melhoramentos"
-// myBook.set_genre("소설");
-// console.log(myBook.genre); // "소설"
-// myBook.print_info();
-// // "이 책의 정보"
-// // "이름: 나의 라임오렌지나무"
-// // "작가: 마우루 지 바스콘셀루스"
-// // "출판연도: 1968"
-// // "출판사: Editora Melhoramentos"
-// // "장르: 소설"
-// console.log(myBook.get_info("author")); // "마우루 지 바스콘셀루스"
-// console.log(myBook.get_info("score")); // null
-// myBook.set_info("country", "Brazil");
-// console.log(myBook.get_info("country")); // "Brazil"
+let myBook = new Book(
+  "나의 라임오렌지나무",
+  "마우루 지 바스콘셀루스",
+  1968,
+  "Editora Melhoramentos"
+);
+console.log(myBook.get_author()); // "마우루 지 바스콘셀루스"
+myBook.print_info();
+myBook.set_genre("소설");
+console.log(myBook.genre); // "소설"
+myBook.print_info();
+console.log(myBook.get_info("author")); // "마우루 지 바스콘셀루스"
+console.log(myBook.get_info("score")); // null
+myBook.set_info("country", "Brazil");
+console.log(myBook.get_info("country")); // "Brazil"
