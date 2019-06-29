@@ -121,15 +121,38 @@ numCiphers(30112);
 function tax(a) {
   return a * 0.4 * 0.22;
 }
+
 tax(100);
 tax(500);
 
 // 13
+function multiplesBetween(a, b) {
+  let multiplesResult = Math.floor(a / b);
+  for (let i = 1; i < multiplesResult + 1; i++) {
+    console.log(i * b);
+  }
+  return multiplesResult;
+}
+
+multiplesBetween(60, 5);
+multiplesBetween(30, 7);
 
 // 14
+// 값이 다르게 나옴.
+function distanceBetween([a, b], [c, d]) {
+  return Math.sqrt(Math.pow(a - c, 2) + Math.pow(b - d, 2));
+}
+
+distanceBetween([4, 5], [3, 2]);
+distanceBetween([8, 5], [3, 7]);
 
 // 15
+function middlePoint([a, b], [c, d]) {
+  return [(a + c) / 2, (b + d) / 2];
+}
 
+middlePoint([4, 5], [3, 2]);
+middlePoint([8, 5], [3, 7]);
 // 16
 
 // 17
